@@ -33,6 +33,8 @@ class AboutNil < Neo::Koan
     # or
     #    obj == nil
     # Why?
+    # Both fulfill the condition equally, even in the case that obj is nil except
+    # that obj.nil? is more readable.
   end
 
 end
