@@ -17,7 +17,7 @@ class AboutNil < Neo::Koan
 
       # What message was attached to the exception?
       # (HINT: replace __ with part of the error message.)
-      assert_match(/__/, ex.message)
+      assert_match(/test_you_dont_get_null_pointer_errors_when_calling_methods_on_nil/, ex.message)
     end
   end
 
