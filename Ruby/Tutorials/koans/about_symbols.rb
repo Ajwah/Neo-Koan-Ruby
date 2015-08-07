@@ -1,3 +1,8 @@
+#Benefit of symbols:
+#http://stackoverflow.com/questions/6725518/cant-get-the-hang-of-symbols-in-ruby?rq=1
+#symbols in ruby are a way to efficiently utilize immutable strings. For example, suppose you want to use the string "my_key" as a hash key. Simply using the string is a waste of both space and efficiency since each time you specify the hash key "my_key" you are creating a different string instance in a different memory location even though the string value contents are the same! So if you have 100 instances of my_hash['my_key'] you have 100 instance of the string 'my_key'. Not so with the symbol :my_key. There is only ever one instance of :my_key no matter how many times you utilize it!
+
+You should use symbols where you would normally uses an immutable string as an identifier.
 require File.expand_path(File.dirname(__FILE__) + '/neo')
 
 class AboutSymbols < Neo::Koan
