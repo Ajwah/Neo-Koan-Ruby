@@ -14,7 +14,15 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  sides = [a,b,c]
+  matches = sides.inject(0) {|acc,e| acc + sides.inject(-1) {|c,s| (s==e) ? c+1:c}}
+  if (matches == 0)
+    return :scalene
+  elsif (matches == 2)
+    return :isosceles
+  else
+    return :equilateral
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
