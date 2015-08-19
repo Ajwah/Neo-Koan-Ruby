@@ -13,16 +13,24 @@
 # and
 #   about_triangle_project_2.rb
 #
+def isInvalid?(a, b, c)
+  cycle = [[a,b,c],[b,c,a],[c,a,b]]
+  # Two conditions need to be fulfilled for validity of a triangle:
+  #       1. Triangle Inequality Theorem
+  #       2. Every side is bigger than zero
+  return (!cycle.inject(true) {|acc,e| acc && (e[0] + e[1] > e[2])}) ||
+         (![a,b,c].inject(true) {|a,v| a && (v > 0)})
+end
+
 def triangle(a, b, c)
-  sides = [a,b,c]
-  matches = sides.inject(0) {|acc,e| acc + sides.inject(-1) {|c,s| (s==e) ? c+1:c}}
-  if (matches == 0)
-    return :scalene
-  elsif (matches == 2)
-    return :isosceles
-  else
-    return :equilateral
+  if isInvalid? a, b, c
+    raise TriangleError
   end
+  triangleType = [:scalene, :isosceles, :impossible, :equilateral]
+  matches = [[a,b],[b,c],[c,a]].inject(0) {|acc,e| acc + ((e[0]==e[1])? 1:0)}
+  # Impossibility of matches = 2 on account of syllogism: a = b & b = c => a = c
+
+  return triangleType[matches]
 end
 
 # Error class used in part 2.  No need to change this code.
