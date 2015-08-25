@@ -34,7 +34,7 @@ def triangle2(a, b, c)
 end
 
 ##
-#I was blown away by the creative approach employed here by Sergey.
+#I was blown away by the creative approach employed here by:
 #https://stackoverflow.com/questions/3834203/ruby-koan-151-raising-exceptions/11361502#11361502
 #Slightly modified it to incorporate suggestion of SLD
 ##
