@@ -30,7 +30,15 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 # Your goal is to write the score method.
 
 def score(dice)
-  # You need to write this method
+  h = Hash.new(0)
+  worth = Hash.new(0)
+
+  dice.each{ |e| h[e] += 1; worth[[e,3]] = e * 100 }
+  worth[[1,3]] = 1000
+  worth[[1,1]] = 100
+  worth[[5,1]] = 50
+
+  r = h.reduce(0) {|acc,(k,v)| acc + ((v/3)*worth[[k,3]] + (v%3)*worth[[k,1]])}
 end
 
 class AboutScoringProject < Neo::Koan
@@ -72,6 +80,14 @@ class AboutScoringProject < Neo::Koan
     assert_equal 1100, score([1,1,1,1])
     assert_equal 1200, score([1,1,1,1,1])
     assert_equal 1150, score([1,1,1,5,1])
+  end
+
+  def test_extra
+    assert_equal 1150, score([1,1,1,5,1])
+    assert_equal 0, score([2,3,4,6,2])
+    assert_equal 350, score([3,4,5,3,3])
+    assert_equal 250, score([1,5,1,2,4])
+    assert_equal 2500, score([2,2,2,2,2,2,3,5,5,5,5,5,5,1,1,1,1])
   end
 
 end
