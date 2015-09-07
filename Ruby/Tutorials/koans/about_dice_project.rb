@@ -4,8 +4,14 @@ require File.expand_path(File.dirname(__FILE__) + '/neo')
 #
 class DiceSet
   attr_reader :values
+  def initialize
+    @old = []
+  end
+
   def roll(n)
     @values = Array.new(n, rand(1..6))
+    roll n if (@values == @old)
+    @old = @values
   end
 
 end
